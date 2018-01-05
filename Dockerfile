@@ -33,17 +33,11 @@ RUN git clone --recursive https://github.com/sass/node-sass.git \
 
 # Make project directory with permissions
 RUN mkdir /project
-#RUN mkdir -p /project/static/dist
-#RUN mkdir -p /project/src
 
 # Switch to project directory
 WORKDIR /project
 
 # Copy required stuff
-#COPY package.json .
-#COPY yarn.lock .
-#COPY webpack ./webpack
-#COPY src/pwa.js ./src
 COPY . .
 
 # Give owner rights to the current user
