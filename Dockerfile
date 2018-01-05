@@ -40,6 +40,7 @@ WORKDIR /project
 # Copy required stuff
 COPY package.json .
 COPY yarn.lock .
+COPY webpack .
 
 # Give owner rights to the current user
 RUN chown -Rh $user:$user /project
