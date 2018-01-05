@@ -38,7 +38,8 @@ RUN mkdir /project
 WORKDIR /project
 
 # Copy required stuff
-COPY . .
+COPY package.json .
+COPY yarn.lock .
 
 # Give owner rights to the current user
 RUN chown -Rh $user:$user /project
@@ -46,4 +47,10 @@ RUN chown -Rh $user:$user /project
 # Install (local) NPM packages and build
 RUN yarn
 
+COPY . .
+
 USER $user
+
+EXPOSE 8080
+ENTRYPOINT ["yarn","start"]
+
