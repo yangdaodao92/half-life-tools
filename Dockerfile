@@ -46,7 +46,7 @@ COPY webpack ./webpack
 RUN chown -Rh $user:$user /project
 
 # Install (local) NPM packages and build
-RUN yarn install
+RUN yarn
 
 COPY . .
 
