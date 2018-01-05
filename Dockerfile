@@ -33,6 +33,7 @@ RUN git clone --recursive https://github.com/sass/node-sass.git \
 
 # Make project directory with permissions
 RUN mkdir /project
+RUN mkdir /project/static/dist
 
 # Switch to project directory
 WORKDIR /project
