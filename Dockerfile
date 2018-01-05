@@ -49,7 +49,7 @@ COPY src/pwa.js ./src
 RUN chown -Rh $user:$user /project
 
 # Install (local) NPM packages and build
-RUN yarn install
+RUN npm install
 
 COPY . .
 RUN yarn
