@@ -12,3 +12,5 @@ webpack/dlls/*.json
 api/**/*.nedb
 *.report.html
 coverage/
+
+*.log
