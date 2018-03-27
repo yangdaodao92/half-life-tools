@@ -53,6 +53,7 @@
       "prettier-eslint --write --eslint-config-path .eslintrc",
       "eslint -c .eslintrc",
       "git add"
+
     ]
   },
   "dependencies": {
