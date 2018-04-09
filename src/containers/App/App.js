@@ -77,7 +77,7 @@ export default class App extends Component {
 
   render() {
     // const { user, notifs, route } = this.props;
-    // const styles = require('./App.scss');
+    const styles = require('./App.scss');
 
     return (
       <div>
@@ -111,7 +111,7 @@ export default class App extends Component {
 
         <Layout>
           <Header style={{ position: 'fixed', width: '100%' }}>
-            <div className="logo" />
+            <div className={styles.logo} />
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ lineHeight: '64px' }}>
               <Menu.Item key="1">nav 1</Menu.Item>
               <Menu.Item key="2">nav 2</Menu.Item>
