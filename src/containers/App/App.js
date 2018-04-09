@@ -3,18 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { push } from 'react-router-redux';
-import { renderRoutes } from 'react-router-config';
+// import { renderRoutes } from 'react-router-config';
 import { provideHooks } from 'redial';
-import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
-import Navbar from 'react-bootstrap/lib/Navbar';
-import Nav from 'react-bootstrap/lib/Nav';
-import NavItem from 'react-bootstrap/lib/NavItem';
-import Alert from 'react-bootstrap/lib/Alert';
 import Helmet from 'react-helmet';
 import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
-import { Notifs, InfoBar } from 'components';
 import config from 'config';
+import { Layout, Menu, Breadcrumb } from 'antd';
+
+const { Header, Content, Footer } = Layout;
 
 @provideHooks({
   fetch: async ({ store: { dispatch, getState } }) => {
@@ -79,81 +76,27 @@ export default class App extends Component {
   };
 
   render() {
-    const { user, notifs, route } = this.props;
-    const styles = require('./App.scss');
+    // const { user, notifs, route } = this.props;
+    // const styles = require('./App.scss');
 
     return (
-      <div className={styles.app}>
+      <div>
         <Helmet {...config.app.head} />
-        <Navbar fixedTop>
-          <Navbar.Header>
-            <Navbar.Brand>
-              <IndexLinkContainer to="/" activeStyle={{ color: '#33e0ff' }} className={styles.title}>
-                <div className={styles.brand}>
-                  <span>{config.app.title}</span>
-                </div>
-              </IndexLinkContainer>
-            </Navbar.Brand>
-            <Navbar.Toggle />
-          </Navbar.Header>
+        {/* <Navbar fixedTop>
+          <IndexLinkContainer to="/" activeStyle={{ color: '#33e0ff' }} className={styles.title}>
+            <div className={styles.brand}>
+              <span>{config.app.title}</span>
+            </div>
+          </IndexLinkContainer>
 
-          <Navbar.Collapse>
-            <Nav navbar>
-              {user && (
-                <LinkContainer to="/chat-feathers">
-                  <NavItem>Chat with Feathers</NavItem>
-                </LinkContainer>
-              )}
+          {user && (
+            <LinkContainer to="/chat-feathers">
+              <NavItem>Chat with Feathers</NavItem>
+            </LinkContainer>
+          )}
+        </Navbar> */}
 
-              <LinkContainer to="/chat">
-                <NavItem>Chat</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/widgets">
-                <NavItem>Widgets</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/survey">
-                <NavItem>Survey</NavItem>
-              </LinkContainer>
-              <LinkContainer to="/about">
-                <NavItem>About Us</NavItem>
-              </LinkContainer>
-
-              {!user && (
-                <LinkContainer to="/login">
-                  <NavItem>Login</NavItem>
-                </LinkContainer>
-              )}
-              {!user && (
-                <LinkContainer to="/register">
-                  <NavItem>Register</NavItem>
-                </LinkContainer>
-              )}
-              {user && (
-                <LinkContainer to="/logout">
-                  <NavItem className="logout-link" onClick={this.handleLogout}>
-                    Logout
-                  </NavItem>
-                </LinkContainer>
-              )}
-            </Nav>
-            {user && (
-              <p className="navbar-text">
-                Logged in as <strong>{user.email}</strong>.
-              </p>
-            )}
-            <Nav navbar pullRight>
-              <NavItem
-                target="_blank"
-                title="View on Github"
-                href="https://github.com/bertho-zero/react-redux-universal-hot-example"
-              >
-                <i className="fa fa-github" />
-              </NavItem>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
-
-        <div className={styles.appContent}>
+        {/* <div className={styles.appContent}>
           {notifs.global && (
             <div className="container">
               <Notifs
@@ -163,21 +106,28 @@ export default class App extends Component {
               />
             </div>
           )}
+        </div> */}
+        {/* <InfoBar /> */}
 
-          {renderRoutes(route.routes)}
-        </div>
-        <InfoBar />
-
-        <div className="well text-center">
-          Have questions? Ask for help{' '}
-          <a
-            href="https://github.com/bertho-zero/react-redux-universal-hot-example/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            on Github
-          </a>.
-        </div>
+        <Layout>
+          <Header style={{ position: 'fixed', width: '100%' }}>
+            <div className="logo" />
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ lineHeight: '64px' }}>
+              <Menu.Item key="1">nav 1</Menu.Item>
+              <Menu.Item key="2">nav 2</Menu.Item>
+              <Menu.Item key="3">nav 3</Menu.Item>
+            </Menu>
+          </Header>
+          <Content style={{ padding: '0 50px', marginTop: 64 }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+            <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>{/* {renderRoutes(route.routes)} */}</div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Ant Design ©2016 Created by Ant UED</Footer>
+        </Layout>
       </div>
     );
   }

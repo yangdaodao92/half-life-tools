@@ -66,15 +66,19 @@ var webpackConfig = module.exports = {
       {
         test: /\.jsx?$/,
         loader: 'happypack/loader?id=jsx',
-        include: [path.resolve(__dirname, '../src')]
+        include: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../node_modules/antd')]
       }, {
         test: /\.json$/,
         loader: 'happypack/loader?id=json',
         include: [path.resolve(__dirname, '../src')]
       }, {
+        test: /\.css$/,
+        loader: 'happypack/loader?id=css'
+        // include: [path.resolve(__dirname, '../src')]
+      }, {
         test: /\.less$/,
         loader: 'happypack/loader?id=less',
-        include: [path.resolve(__dirname, '../src')]
+        // include: [path.resolve(__dirname, '../src')]
       }, {
         test: /\.scss$/,
         loader: 'happypack/loader?id=sass',
@@ -168,6 +172,13 @@ var webpackConfig = module.exports = {
         options: { emitWarning: true }
       }
     ]),
+    helpers.createHappyPlugin('css', [
+      {
+        loader: 'style-loader',
+      }, {
+        loader: 'css-loader',
+      }
+    ]),
     helpers.createHappyPlugin('less', [
       {
         loader: 'style-loader',
@@ -175,7 +186,7 @@ var webpackConfig = module.exports = {
       }, {
         loader: 'css-loader',
         options: {
-          modules: true,
+          // modules: true,
           importLoaders: 2,
           sourceMap: true,
           localIdentName: '[local]___[hash:base64:5]'

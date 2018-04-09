@@ -17,7 +17,8 @@
     "transform-runtime",
     "add-module-exports",
     "transform-decorators-legacy",
-    "react-loadable/babel"
+    "react-loadable/babel",
+    ["import", { "libraryName": "antd", "libraryDirectory": "lib", "style": true }]
   ],
   "env": {
     "development": {
